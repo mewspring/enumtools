@@ -607,7 +607,7 @@ func (g *Generator) buildOneRun(runs [][]Value, typeName string) {
 //	[4]: qualified type name
 const stringOneRun = `// %[1]sString returns the string corresponding to the %[1]s enum.
 // The boolean return value indicates success.
-func %[1]sString(v %[4]s) (string, bool) {
+func %[1]sString(i %[4]s) (string, bool) {
 	if %[3]si >= %[4]s(len(_%[1]s_index)-1) {
 		return "", false
 	}
@@ -711,7 +711,7 @@ func (g *Generator) buildMap(runs [][]Value, typeName string) {
 //	[2]: qualified type name
 const stringMap = `// %[1]sString returns the string corresponding to the %[1]s enum.
 // The boolean return value indicates success.
-func %[1]sString(v %[2]s) (string, bool) {
+func %[1]sString(i %[2]s) (string, bool) {
 	if str, ok := _%[1]s_map[i]; ok {
 		return str, true
 	}
