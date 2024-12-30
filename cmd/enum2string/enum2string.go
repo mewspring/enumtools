@@ -674,7 +674,7 @@ func %[1]sString(i %[2]s) (string, bool) {
 			typeName, i, typeName, i, typeName, i)
 	}
 	g.Printf("\tdefault:\n")
-	g.Printf("\t\treturn 0, false\n")
+	g.Printf("\t\treturn \"\", false\n")
 	g.Printf("\t}\n")
 	g.Printf("}\n")
 }
@@ -715,7 +715,7 @@ func %[1]sString(v %[2]s) (string, bool) {
 	if str, ok := _%[1]s_map[i]; ok {
 		return str, true
 	}
-	return 0, false
+	return "", false
 }
 `
 
