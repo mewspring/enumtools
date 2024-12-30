@@ -685,7 +685,10 @@ func (g *Generator) buildMap(runs [][]Value, typeName string) {
 	g.Printf("\n")
 	if !*samepkg {
 		g.declareNameVars(runs, typeName, "")
-		g.Printf("\nvar _%s_map = map[%s]string{\n", typeName, typeName)
+		// Arguments to format are:
+		//	[1]: type name
+		//	[2]: package name
+		g.Printf("\nvar _%[1]s_map = map[%[2]s.%[1]s]string{\n", typeName, g.pkg.name)
 		n := 0
 		for _, values := range runs {
 			for _, value := range values {
