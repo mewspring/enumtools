@@ -641,7 +641,19 @@ func (g *Generator) buildMultipleRuns(runs [][]Value, typeName string) {
 	if !*samepkg {
 		g.declareIndexAndNameVars(runs, typeName)
 	}
-	g.Printf("func (i %s) String() (string, bool) {\n", typeName)
+	// Arguments to format are:
+	//	[1]: type name
+	//	[2]: qualified type name
+	const format = `
+// %[1]sString returns the string corresponding to the %[1]s enum.
+// The boolean return value indicates success.
+func %[1]sString(i %[2]s) (string, bool) {
+`
+	typeIdent := typeName
+	if g.pkg.name != "main" && !*enumpkg {
+		typeIdent = fmt.Sprintf("%s.%s", g.pkg.name, typeName)
+	}
+	g.Printf(format[1:], typeName, typeIdent)
 	g.Printf("\tswitch {\n")
 	for i, values := range runs {
 		if len(values) == 1 {
