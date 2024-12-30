@@ -623,7 +623,7 @@ func %[1]sString(v %[4]s) (string, bool) {
 //	[5]: qualified type name
 /*
  */
-const stringOneRunWithOffset = `// %[1]sFromString returns the %[1]s enum corresponding to s.
+const stringOneRunWithOffset = `// %[1]sString returns the string corresponding to the %[1]s enum.
 // The boolean return value indicates success.
 func %[1]sString(i %[5]s) (string, bool) {
 	i -= %[2]s
@@ -694,7 +694,7 @@ func (g *Generator) buildMap(runs [][]Value, typeName string) {
 //
 //	[1]: type name
 //	[2]: qualified type name
-const stringMap = `// %[1]sString returns the string representation corresponding to the given %[1]s enum.
+const stringMap = `// %[1]sString returns the string corresponding to the %[1]s enum.
 // The boolean return value indicates success.
 func %[1]sString(v %[2]s) (string, bool) {
 	if str, ok := _%[1]s_map[i]; ok {
